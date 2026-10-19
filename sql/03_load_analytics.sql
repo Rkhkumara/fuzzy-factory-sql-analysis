@@ -30,3 +30,10 @@ SELECT order_item_refund_id::INT, created_at::TIMESTAMP, order_item_id::INT, ord
        refund_amount_usd::NUMERIC
 FROM raw.order_item_refunds;
 COMMIT;
+
+SELECT 'products' t, (SELECT COUNT(*) FROM raw.products) raw_n, (SELECT COUNT(*) FROM analytics.products) analytics_n
+UNION ALL SELECT 'website_sessions', (SELECT COUNT(*) FROM raw.website_sessions), (SELECT COUNT(*) FROM analytics.website_sessions)
+UNION ALL SELECT 'website_pageviews', (SELECT COUNT(*) FROM raw.website_pageviews), (SELECT COUNT(*) FROM analytics.website_pageviews)
+UNION ALL SELECT 'orders', (SELECT COUNT(*) FROM raw.orders), (SELECT COUNT(*) FROM analytics.orders)
+UNION ALL SELECT 'order_items', (SELECT COUNT(*) FROM raw.order_items), (SELECT COUNT(*) FROM analytics.order_items)
+UNION ALL SELECT 'order_item_refunds', (SELECT COUNT(*) FROM raw.order_item_refunds), (SELECT COUNT(*) FROM analytics.order_item_refunds);

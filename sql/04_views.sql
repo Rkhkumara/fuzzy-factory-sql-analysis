@@ -72,3 +72,6 @@ SELECT SUM(refund_amount_usd) AS total_refund_tabel FROM analytics.order_item_re
 
 SELECT COUNT(*) AS jumlah_sesi, SUM(s7_thank_you) AS sampai_checkout FROM analytics.vw_session_funnel;
 -- harus: 472871 dan 32313
+
+SELECT COUNT(*) AS jumlah_item, SUM(refund_usd) AS total_refund
+FROM analytics.vw_order_items_net;
